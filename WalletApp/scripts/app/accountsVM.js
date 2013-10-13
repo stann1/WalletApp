@@ -50,7 +50,7 @@ var app = app || {};
     function saveEntry(e){
         var entry = detailViewModel.get("detailModel");
         //console.log(entry);
-        sqlite.updateFullRecord(entry.id, [entry.provider, entry.number, entry.cardType, entry.active], "Accounts");
+        sqlite.updateFullRecord(entry.id, [entry.provider, entry.number, entry.cardType, entry.screenshotUrl, entry.active], "Accounts");
         kendo.mobile.application.navigate("#:back");
     }
     
@@ -61,6 +61,8 @@ var app = app || {};
     function createEntry(){
         var entry = createViewModel.get("createModel");
         entry.active = true;
+        var imgPath = $('#smallImage').attr('src');
+        entry.screenshotUrl = imgPath;
         //console.log(entry);
         sqlite.addAccount(entry);
         kendo.mobile.application.navigate("#:back");

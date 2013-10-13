@@ -24,7 +24,14 @@
                 <label>Card type
                     <input type="text" data-bind="value: createModel.cardType" placeholder="Card type"/>
                 </label>
-            </li>            
+            </li>
+            <li>
+                <label>Screenshot
+                    <img id="smallImage" data-bind="attr: { src: createModel.screenshotUrl }"/>    
+                </label>
+                <a data-role="button" onclick="cordovaExt.capturePhoto()">Make screenshot</a>
+                <a data-role="button" onclick="cordovaExt.uploadFromLibrary()">Select from album</a>
+            </li>     
         </ul>        
     </form>
 </div>

@@ -1,7 +1,7 @@
 var sqlite = (function() {
     
      var db = null;
-     var _accountFields = ["provider", "number", "cardType", "active"];
+     var _accountFields = ["provider", "number", "cardType", "screenshotUrl", "active"];
      var _credentialFields = ["provider", "address", "password"];
      var _contactFields = ["name", "imageUrl", "email", "phone", "notes"];
 
@@ -21,8 +21,8 @@ var sqlite = (function() {
 
      function insertAccRecord(account) {
         db.transaction(function(tx) {
-            tx.executeSql("INSERT INTO Accounts(provider, number, cardType, active) VALUES (?,?,?,?);",
-                          [account.provider, account.number, account.cardType, account.active],
+            tx.executeSql("INSERT INTO Accounts(provider, number, cardType, screenshotUrl, active) VALUES (?,?,?,?,?);",
+                          [account.provider, account.number, account.cardType, account.screenshotUrl, account.active],
                           querySuccess,
                           onError);
         });
@@ -169,6 +169,7 @@ var sqlite = (function() {
                           "provider TEXT, " +
                           "number TEXT, " +
                           "cardType TEXT, " +
+                          "screenshotUrl TEXT, " +
                           "active BIT);", []);
             tx.executeSql("CREATE TABLE IF NOT EXISTS Credentials" +
                           "(id INTEGER PRIMARY KEY ASC, " +

@@ -12,24 +12,38 @@
         <ul>
             <li>
                 <label>Name
-                    <input type="text" data-bind="value: createModel.name" />
+                    <input id="name-input" type="text" data-bind="value: createModel.name" />
                 </label>
-            </li>            
+                <a data-role="button" onclick="getContactData()">Fill from phone contacts</a>
+            </li>
+            <hr/>
             <li>
                 <label>Email
-                    <input type="text" data-bind="value: createModel.email" />
-                </label>
+                    <input id="input-mail" type="text" data-bind="value: createModel.email" />
+                </label>                
             </li>
             <li>
                 <label>Phone
-                    <input type="text" data-bind="value: createModel.phone"/>
+                    <input id="input-phone" type="text" data-bind="value: createModel.phone"/>
                 </label>
             </li>
             <li>
                 <label>Phone
                     <textarea data-bind="value: createModel.notes"></textarea>                   
                 </label>
-            </li>  
+            </li> 
+            <hr/>
         </ul>        
     </form>
 </div>
+<div id="success-error"></div>
+<script>
+    function getContactData(){
+        var name = $('#name-input').text();
+        if(name == undefined || name == ""){
+            $('#success-error').text("Name field is required for the import")
+        }
+        
+        cordovaExt.getContact(name);
+    }
+</script>

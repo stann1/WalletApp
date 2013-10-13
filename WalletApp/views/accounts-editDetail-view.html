@@ -29,7 +29,13 @@
                 <label>Card type
                     <input type="text" data-bind="value: detailModel.cardType"/>
                 </label>
-            </li>            
+            </li>
+            <li>
+                <label>Screenshot
+                    <img id="smallImage" data-bind="attr: { src: createModel.screenshotUrl }"/>    
+                </label>
+                <a data-role="button" onclick="cordovaExt.capturePhoto()">Change screenshot</a>
+            </li>    
         </ul>        
     </form>
 </div>
