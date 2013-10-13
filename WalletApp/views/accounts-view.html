@@ -1,0 +1,34 @@
+<div data-role="view" id="accounts-view" data-id="accounts-view"
+     data-layout="main-layout" data-title="Accounts"
+     data-show="app.accounts.init">
+    <ul id="command-list" data-role="buttongroup" data-index="0" data-select="regroup">
+        <li>
+            <a data-role="button" data-bind="events: {click: getAlphabetically}">Alphabetically</a>
+        </li>
+        <li>
+            <a data-role="button" data-bind="events: {click: getByLocation}">By location</a>
+        </li>
+        <li>
+            <a data-role="button" href="views/accounts-create-view.html#create-account">Add new</a>
+        </li>
+    </ul>
+    <ul data-role="listview" data-bind="source: accounts" data-template="acc-template"></ul>
+</div>
+
+<script id="acc-template" type="text/x-kendo-template">
+    <div id="account-entry">
+        <h2>#: provider #</h2>
+        <span>Number: #: number #</span>
+        <span>Type: #: cardType #</span>
+        <div>Active card? #: active #</div>
+        <a data-role="button" href="views/accounts-editDetail-view.html\#edit-detailview?uid=#: id #">Details</a>
+    </div>
+</script>
+<script>
+    
+    
+    function navigate(e) {
+        var itemUID = $(e.touch.currentTarget).data("uid");
+        kendo.mobile.application.navigate("#edit-detailview?uid=" + itemUID);
+    }
+</script>

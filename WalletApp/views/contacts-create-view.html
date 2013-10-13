@@ -1,0 +1,35 @@
+<div data-role="view" id="create-contact" data-id="create-contact" data-show="app.contacts.createShow"
+    data-layout="main-layout" data-title="Create-contact">
+    <header data-role="header">
+        <div data-role="navbar">
+            <a class="nav-button" data-align="left" data-role="backbutton" id="cancel">Cancel</a>
+            <span data-role="view-title">Create contact</span>
+            <a class="nav-button" data-align="right" data-role="button" data-bind="events: {click: createEntry}" id="done">Done</a>
+        </div>
+    </header>
+
+    <form>
+        <ul>
+            <li>
+                <label>Name
+                    <input type="text" data-bind="value: createModel.name" />
+                </label>
+            </li>            
+            <li>
+                <label>Email
+                    <input type="text" data-bind="value: createModel.email" />
+                </label>
+            </li>
+            <li>
+                <label>Phone
+                    <input type="text" data-bind="value: createModel.phone"/>
+                </label>
+            </li>
+            <li>
+                <label>Phone
+                    <textarea data-bind="value: createModel.notes"></textarea>                   
+                </label>
+            </li>  
+        </ul>        
+    </form>
+</div>

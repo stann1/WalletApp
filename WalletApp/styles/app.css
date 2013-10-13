@@ -1,0 +1,14 @@
+#category-info h1{
+    text-align:center;
+}
+
+#home-screen {
+    width: 180px;
+    height:180px;
+    margin-left:60px;
+}
+
+#command-list .km-button a span {
+    font-size: 0.8em;
+    color: #dcdcdc;
+}

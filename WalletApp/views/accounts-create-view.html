@@ -1,0 +1,30 @@
+<div data-role="view" id="create-account" data-id="create-account" data-show="app.accounts.createShow"
+    data-layout="main-layout" data-title="Create-account">
+    <header data-role="header">
+        <div data-role="navbar">
+            <a class="nav-button" data-align="left" data-role="backbutton" id="cancel">Cancel</a>
+            <span data-role="view-title">Create account</span>
+            <a class="nav-button" data-align="right" data-role="button" data-bind="events: {click: createEntry}" id="done">Done</a>
+        </div>
+    </header>
+
+    <form>
+        <ul>
+            <li>
+                <label>Institution name
+                    <input type="text" data-bind="value: createModel.provider" placeholder="Institution name"/>
+                </label>
+            </li>            
+            <li>
+                <label>Account number
+                    <input type="text" data-bind="value: createModel.number" placeholder="Account number"/>
+                </label>
+            </li>
+            <li>
+                <label>Card type
+                    <input type="text" data-bind="value: createModel.cardType" placeholder="Card type"/>
+                </label>
+            </li>            
+        </ul>        
+    </form>
+</div>

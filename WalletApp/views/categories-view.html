@@ -1,0 +1,15 @@
+<div data-role="view" id="categories-view" data-id="categories-view"
+     data-layout="main-layout" data-title="Categories"
+     data-show="app.categories.init">
+    <div id="categories-holder">
+        <select id="categories-list" data-role="dropdownlist"
+                data-bind="source: categories, events: { change: change}"
+                data-text-field="Name"
+                data-value-field="Id">
+        </select>
+        <div id="category-info">
+            <h1 data-bind="text: selectedCategory.Name" data-align="center"></h1>            
+            <ul data-role="listview" data-bind="source: selectedCategory.Places" data-template="place-template"></ul>                
+        </div>
+    </div>
+</div>

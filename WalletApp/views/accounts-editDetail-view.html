@@ -1,0 +1,42 @@
+<div data-role="view" id="edit-detailview" data-id="edit-detailview" data-show="app.accounts.detailShow"
+    data-layout="main-layout" data-title="Details">
+    <header data-role="header">
+        <div data-role="navbar">
+            <a class="nav-button" data-align="left" data-role="backbutton" id="cancel">Cancel</a>
+            <span data-role="view-title">Details</span>
+            <a class="nav-button" data-align="right" data-role="button" data-bind="events: {click: saveEntry}" id="done">Done</a>
+        </div>
+    </header>
+
+    <form>
+        <ul>
+            <li>
+                <label>Institution name
+                    <input type="text" data-bind="value: detailModel.provider"/>
+                </label>
+            </li>
+            <li>
+                Active account
+                    <input type="checkbox" data-role="switch" data-bind="checked: detailModel.active"/>
+
+            </li>
+            <li>
+                <label>Account number
+                    <input type="text" data-bind="value: detailModel.number"/>
+                </label>
+            </li>
+            <li>
+                <label>Card type
+                    <input type="text" data-bind="value: detailModel.cardType"/>
+                </label>
+            </li>            
+        </ul>        
+    </form>
+</div>
+<script>
+    $("a#done").kendoTouch({
+            tap: function(e) {
+                console.log(e.touch.target + " was tapped");
+            }
+        });
+</script>

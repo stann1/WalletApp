@@ -1,0 +1,38 @@
+<div data-role="view" id="edit-detailview" data-id="edit-detailview" data-show="app.contacts.detailShow"
+    data-layout="main-layout" data-title="Details">
+    <header data-role="header">
+        <div data-role="navbar">
+            <a class="nav-button" data-align="left" data-role="backbutton" id="cancel">Cancel</a>
+            <span data-role="view-title">Details</span>
+            <a class="nav-button" data-align="right" data-role="button" data-bind="events: {click: saveEntry}" id="done">Done</a>
+        </div>
+    </header>
+
+    <form>
+        <ul>
+            <li>                
+                <img data-bind="attr: { src: detailModel.imageUrl }"/>                
+            </li>    
+            <li>
+                <label>Name
+                    <input type="text" data-bind="value: detailModel.name"/>
+                </label>
+            </li>            
+            <li>
+                <label>Email
+                    <input type="text" data-bind="value: detailModel.email"/>
+                </label>
+            </li>
+            <li>
+                <label>Phone
+                    <input type="text" data-bind="value: detailModel.phone"/>
+                </label>
+            </li>
+            <li>
+                <label>Phone
+                    <input type="text" data-bind="value: detailModel.notes"/>
+                </label>
+            </li>     
+        </ul>        
+    </form>
+</div>
