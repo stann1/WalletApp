@@ -3,9 +3,9 @@
 }
 
 #home-screen {
-    width: 180px;
-    height:180px;
-    margin-left:60px;
+    width: 240px;
+    height:280px;
+    margin:auto;
 }
 
 #command-list .km-button a span {
