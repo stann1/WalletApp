@@ -12,17 +12,17 @@
         <ul>
             <li>
                 <label>Institution name
-                    <input type="text" data-bind="value: createModel.provider" placeholder="Institution name"/>
+                    <input type="text" data-bind="value: createModel.provider" />
                 </label>
             </li>            
             <li>
                 <label>Account number
-                    <input type="text" data-bind="value: createModel.number" placeholder="Account number"/>
+                    <input type="text" data-bind="value: createModel.number"/>
                 </label>
             </li>
             <li>
                 <label>Card type
-                    <input type="text" data-bind="value: createModel.cardType" placeholder="Card type"/>
+                    <input type="text" data-bind="value: createModel.cardType"/>
                 </label>
             </li>
             <li>
@@ -31,7 +31,22 @@
                 </label>
                 <a data-role="button" onclick="cordovaExt.capturePhoto()">Make screenshot</a>
                 <a data-role="button" onclick="cordovaExt.uploadFromLibrary()">Select from album</a>
-            </li>     
+            </li>
+            <li>
+                <label>Institution location
+                    <input id="input-loc" type="text" data-bind="value: createModel.bankLocation" />
+                </label>
+                <a data-role="button" onclick="getCurrentLocation()">Set current</a>
+            </li>
         </ul>        
     </form>
 </div>
+<div id="success-error"></div>
+<script>
+    function getCurrentLocation(){
+        cordovaExt.getLocation().then(function(location) {
+            var locationString = location.coords.latitude + "," + location.coords.longitude;            
+            $('#input-loc').val(locationString); 
+        })
+    }
+</script>

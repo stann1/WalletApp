@@ -10,5 +10,30 @@
 
 #command-list .km-button a span {
     font-size: 0.8em;
-    color: #dcdcdc;
+    color: #ffffff;
+}
+
+#create-btn {
+    background-color:#82B517;
+}
+
+span.pull-right {
+    float: right;
+}
+
+p.entry .address {   
+    line-height: 30px;
+}
+
+p.entry img{
+    vertical-align: center;
+    margin-right: 5px;
+}
+
+#login-pannel button {    
+    width: 140px;
+    background-color: #6c98e2;
+    border-radius:5px;
+    margin-left:40px;
+    color: inherit;
 }

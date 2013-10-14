@@ -50,7 +50,7 @@ var app = app || {};
     function saveEntry(e){
         var entry = detailViewModel.get("detailModel");
         //console.log(entry);
-        sqlite.updateFullRecord(entry.id, [entry.provider, entry.number, entry.cardType, entry.screenshotUrl, entry.active], "Accounts");
+        sqlite.updateFullRecord(entry.id, [entry.provider, entry.number, entry.cardType, entry.screenshotUrl, entry.bankLocation, entry.active], "Accounts");
         kendo.mobile.application.navigate("#:back");
     }
     
@@ -63,22 +63,28 @@ var app = app || {};
         entry.active = true;
         var imgPath = $('#smallImage').attr('src');
         entry.screenshotUrl = imgPath;
+        entry.bankLocation = $('#input-loc').val(); 
         //console.log(entry);
         sqlite.addAccount(entry);
         kendo.mobile.application.navigate("#:back");
     }
     
-    //function getByLocation() {
-    //    cordovaExt.getLocation().
-    //    then(function(location) {
-    //        var locationString = location.coords.latitude + "," + location.coords.longitude;            
-    //        return httpRequest.getJSON(app.servicesBaseUrl  + "places?location=" + locationString);     
-    //    })
-    //    .then(function(places) {
-    //        viewModel.set("places", places); 
-    //        console.log(places);
-    //    });
-    //}
+    function getByLocation() {
+        cordovaExt.getLocation().
+        then(function(location) {
+            var locationString = location.coords.latitude + "," + location.coords.longitude;  
+            
+            sqlite.findRecord("Accounts", "bankLocation", locationString, function(tx, results){
+                for (var i = 0; i < results.rows.length; i++) {
+                    queryData.push(results.rows.item(i));
+                }
+                
+                viewModel.set("accounts", queryData); 
+            });
+            
+            queryData = [];
+        });
+    }
     
     var detailViewModel = kendo.observable({
         detailModel:{},
@@ -92,8 +98,8 @@ var app = app || {};
        
     var viewModel = kendo.observable({
         accounts:[],
-        getAlphabetically: getAlphabetically
-        //getByLocation: getByLocation
+        getAlphabetically: getAlphabetically,
+        getByLocation: getByLocation
     });
     
     function init(e) {

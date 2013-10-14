@@ -1,26 +1,20 @@
 <div data-role="view" id="contacts-view" data-id="contacts-view"
      data-layout="main-layout" data-title="Contacts"
      data-show="app.contacts.init">
-    <ul id="command-list">
+    <ul id="command-list" data-role="buttongroup" data-index="0" data-select="regroup">
         <li>
-            <a data-role="button" data-bind="events: {click: getAlphabetically}">Alphabetically</a>
-        </li>
-        <li>
-            <a data-role="button" href="views/contacts-create-view.html#create-contact">Add new</a>
+            <a data-role="button" data-bind="events: {click: getAlphabetically}">Sort a-z</a>
         </li>
     </ul>
+    <a id="create-btn" data-role="button" href="views/contacts-create-view.html#create-contact">Add new</a>
     <ul data-role="listview" data-bind="source: contacts" data-template="contact-template"></ul>
 </div>
 <script id="contact-template" type="text/x-kendo-template">
     <div>
-        <p><img src="#: imageUrl #" alt="n/a" width="70px" height="70px" /><span>#: name #</span>
-            <span><a onclick="navigate(#: id #)">View details</a></span>
+        <p class="entry"><img src="#: imageUrl #" alt="n/a" width="70px" height="70px" /><span>#: name #</span>
+            <span class="pull-right"><a data-role="button" href="#= 'views/contacts-edit-view.html\#edit-detailview?uid=' + id #">Details</a></span>
         </p>
     </div>
 </script>
 <script>
-    function navigate(id) {
-        //console.log(id);
-        kendo.mobile.application.navigate("views/contacts-edit-view.html#edit-detailview?uid=" + id);
-    }
 </script>

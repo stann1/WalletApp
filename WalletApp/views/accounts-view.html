@@ -3,15 +3,13 @@
      data-show="app.accounts.init">
     <ul id="command-list" data-role="buttongroup" data-index="0" data-select="regroup">
         <li>
-            <a data-role="button" data-bind="events: {click: getAlphabetically}">Alphabetically</a>
+            <a data-role="button" data-bind="events: {click: getAlphabetically}">Sort a-z</a>
         </li>
         <li>
-            <a data-role="button" data-bind="events: {click: getByLocation}">By location</a>
-        </li>
-        <li>
-            <a data-role="button" href="views/accounts-create-view.html#create-account">Add new</a>
-        </li>
+            <a data-role="button" data-bind="events: {click: getByLocation}">filter location</a>
+        </li>       
     </ul>
+    <a id="create-btn" data-role="button" href="views/accounts-create-view.html#create-account">Add new</a>
     <ul data-role="listview" data-bind="source: accounts" data-template="acc-template"></ul>
 </div>
 

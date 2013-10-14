@@ -32,17 +32,32 @@
             </li>
             <li>
                 <label>Screenshot
-                    <img id="smallImage" data-bind="attr: { src: createModel.screenshotUrl }"/>    
+                    <img id="smallImage" data-bind="attr: { src: detailModel.screenshotUrl }"/>    
                 </label>
                 <a data-role="button" onclick="cordovaExt.capturePhoto()">Change screenshot</a>
-            </li>    
+            </li>
+            <li>
+                <label>Institution location
+                    <input id="input-loc" type="text" data-bind="value: detailModel.bankLocation" />
+                </label>
+                <a data-role="button" onclick="getCurrentLocation()">Set current</a>
+            </li>
         </ul>        
     </form>
 </div>
+<div id="success-error"></div>
 <script>
     $("a#done").kendoTouch({
             tap: function(e) {
                 console.log(e.touch.target + " was tapped");
             }
         });
+   
+    function getCurrentLocation(){
+        cordovaExt.getLocation().then(function(location) {
+            var locationString = location.coords.latitude + "," + location.coords.longitude;            
+            $('#input-loc').val(locationString); 
+        })
+    }
 </script>
+

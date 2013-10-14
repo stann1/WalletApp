@@ -1,7 +1,7 @@
 var sqlite = (function() {
     
      var db = null;
-     var _accountFields = ["provider", "number", "cardType", "screenshotUrl", "active"];
+     var _accountFields = ["provider", "number", "cardType", "screenshotUrl", "active", "bankLocation"];
      var _credentialFields = ["provider", "address", "password"];
      var _contactFields = ["name", "imageUrl", "email", "phone", "notes"];
 
@@ -21,8 +21,8 @@ var sqlite = (function() {
 
      function insertAccRecord(account) {
         db.transaction(function(tx) {
-            tx.executeSql("INSERT INTO Accounts(provider, number, cardType, screenshotUrl, active) VALUES (?,?,?,?,?);",
-                          [account.provider, account.number, account.cardType, account.screenshotUrl, account.active],
+            tx.executeSql("INSERT INTO Accounts(provider, number, cardType, screenshotUrl, bankLocation, active) VALUES (?,?,?,?,?,?);",
+                          [account.provider, account.number, account.cardType, account.screenshotUrl, account.bankLocation, account.active],
                           querySuccess,
                           onError);
         });
@@ -105,6 +105,14 @@ var sqlite = (function() {
                           onError);
         });
     }
+    
+    function findRecord(table, filedName, fieldValue, fn){
+        db.transaction(function(tx) {
+            tx.executeSql("SELECT * FROM " + table +" WHERE " + filedName + " = ?;", [fieldValue],
+                          fn,
+                          onError);
+        });
+    }
 
     function onSuccess() {
         console.log("Your SQLite query was successful!");
@@ -123,6 +131,7 @@ var sqlite = (function() {
 
     function onError(e) {
         console.log("SQLite Error: " + e);
+        $("#success-error").text("Database operation failed: " + e);
     }
     
     function fillSampleData(){
@@ -170,6 +179,7 @@ var sqlite = (function() {
                           "number TEXT, " +
                           "cardType TEXT, " +
                           "screenshotUrl TEXT, " +
+                          "bankLocation TEXT, " +
                           "active BIT);", []);
             tx.executeSql("CREATE TABLE IF NOT EXISTS Credentials" +
                           "(id INTEGER PRIMARY KEY ASC, " +
@@ -194,7 +204,8 @@ var sqlite = (function() {
         addContact: insertContactRecord,
         deleteRecord: deleteRecord,
         updateRecord: updateRecord,
-        updateFullRecord: updateFullRecord
+        updateFullRecord: updateFullRecord,
+        findRecord: findRecord
     }
 }());
 /*

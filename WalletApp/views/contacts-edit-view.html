@@ -9,10 +9,8 @@
     </header>
 
     <form>
-        <ul>
-            <li>                
-                <img data-bind="attr: { src: detailModel.imageUrl }"/>                
-            </li>    
+        <img data-bind="attr: { src: detailModel.imageUrl }"/>
+        <ul>            
             <li>
                 <label>Name
                     <input type="text" data-bind="value: detailModel.name"/>
@@ -29,10 +27,11 @@
                 </label>
             </li>
             <li>
-                <label>Phone
-                    <input type="text" data-bind="value: detailModel.notes"/>
+                <label>Notes
+                    <textarea data-bind="value: detailModel.notes"></textarea> 
                 </label>
             </li>     
         </ul>        
     </form>
 </div>
+<div id="success-error"></div>
